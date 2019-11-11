@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8'?>
+    <plugin id="cordova-plugin-facebookplugin" version="0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+        <name>SDK_Facebook</name>
+        <js-module name="SDK_Facebook" src="www/SDK_Facebook.js">
+            <clobbers target="cordova.plugins.SDK_Facebook" />
+        </js-module>
+        <platform name="android">
+            <config-file parent="/*" target="res/xml/config.xml">
+                <feature name="SDK_Facebook">
+                    <param name="android-package" value="cordova.plugin.facebookplugin.SDK_Facebook" />
+                </feature>
+            </config-file>
+            <config-file parent="/*" target="AndroidManifest.xml">
+                <uses-permission android:name="android.permission.INTERNET" />
+                <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+                <uses-permission android:name="android.permission.WAKE_LOCK" />
+                
+            </config-file>
+             <config-file target="res/values/strings.xml" parent="/*">
+                 <string name="facebook_app_id">375010693137631</string>
+            </config-file>
+            <config-file parent="/application" targe="AndroidManifest.xml">
+                <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+            </config-file>
+            <source-file src="src/android/SDK_Facebook.java" target-dir="src/cordova.plugin.facebookplugin/SDK_Facebook" />
+            <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+            <framework src="com.facebook.android:facebook-android-sdk:[4,5)" />
+        </platform>
+    </plugin>
