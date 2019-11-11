@@ -22,8 +22,8 @@
             <config-file parent="/application" targe="AndroidManifest.xml">
                 <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
             </config-file>
-            <source-file src="src/android/SDK_Facebook.java" target-dir="src/cordova.plugin.facebookplugin/SDK_Facebook" />
             <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
             <framework src="com.facebook.android:facebook-android-sdk:4.33.0" />
+
         </platform>
     </plugin>
