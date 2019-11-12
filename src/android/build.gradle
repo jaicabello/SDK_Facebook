@@ -6,22 +6,7 @@ buildscript {
 dependencies {
     // Facebook Core only (Analytics)
     compile 'com.facebook.android:facebook-core:5.0.0'
-
-    // Facebook Login only
-    compile 'com.facebook.android:facebook-login:5.0.0'
-
-    // Facebook Share only
-    compile 'com.facebook.android:facebook-share:5.0.0'
-
-    // Facebook Places only
-    compile 'com.facebook.android:facebook-places:5.0.0'
-
-    // Facebook Messenger only
-    compile 'com.facebook.android:facebook-messenger:5.0.0'
-
-    // Facebook App Links only
-    compile 'com.facebook.android:facebook-applinks:5.0.0'
-
+    
     // Facebook Android SDK (everything)
     compile 'com.facebook.android:facebook-android-sdk:5.0.0'
 }
