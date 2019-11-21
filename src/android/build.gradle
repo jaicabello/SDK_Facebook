@@ -5,8 +5,11 @@ buildscript {
 }
 dependencies {
     // Facebook Core only (Analytics)
-    compile 'com.facebook.android:facebook-core:5.0.0'
-    
+    implementation 'com.facebook.android:facebook-core:5.0.0'
+
+    // Facebook App Links only
+    implementation 'com.facebook.android:facebook-applinks:5.0.0'
+
     // Facebook Android SDK (everything)
-    compile 'com.facebook.android:facebook-android-sdk:5.0.0'
+    implementation 'com.facebook.android:facebook-android-sdk:5.0.0'
 }

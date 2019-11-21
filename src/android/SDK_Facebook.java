@@ -1,18 +1,65 @@
 package cordova.plugin.facebookplugin;
 
-import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CallbackContext;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
+import android.net.Uri;
+import android.os.Bundle;
+import android.util.Log;
+import android.webkit.WebView;
 
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import com.facebook.FacebookSdk;
+import com.facebook.CallbackManager;
+import com.facebook.share.model.ShareOpenGraphObject;
+import com.facebook.share.model.ShareOpenGraphAction;
+import com.facebook.share.model.ShareOpenGraphContent;
 import com.facebook.appevents.AppEventsLogger;
+import com.facebook.share.widget.ShareDialog;
+import com.facebook.share.widget.GameRequestDialog;
+import com.facebook.share.widget.MessageDialog;
+
+
+
+
 
 /**
  * This class echoes a string called from JavaScript.
  */
 public class SDK_Facebook extends CordovaPlugin {
+
+    private static final int INVALID_ERROR_CODE = -2; //-1 is FacebookRequestError.INVALID_ERROR_CODE
+    private static final String PUBLISH_PERMISSION_PREFIX = "publish";
+    private static final String MANAGE_PERMISSION_PREFIX = "manage";
+    @SuppressWarnings("serial")
+    private static final Set<String> OTHER_PUBLISH_PERMISSIONS = new HashSet<String>() {
+        {
+            add("ads_management");
+            add("create_event");
+            add("rsvp_event");
+        }
+    };
+    private final String TAG = "SDK_Facebook";
+
+    private CallbackManager callbackManager;
+    private AppEventsLogger logger;
+    private CallbackContext loginContext = null;
+    private CallbackContext showDialogContext = null;
+    private CallbackContext lastGraphContext = null;
+    private String graphPath;
+    private ShareDialog shareDialog;
+    private GameRequestDialog gameRequestDialog;
+    private MessageDialog messageDialog;
+
+
+
+    
 
     @Override
     public boolean logEventSDKFacebook(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -23,6 +70,30 @@ public class SDK_Facebook extends CordovaPlugin {
              return true;
          }
          return false;
+    }
+
+
+    /**
+     * This function assumes logger is an instance of AppEventsLogger and has been
+     * created using AppEventsLogger.newLogger() call.
+     */
+    public void logViewContentEvent (String contentType, String contentData, String contentId, String currency, double price) {
+        Bundle params = new Bundle();
+        params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, contentType);
+        params.putString(AppEventsConstants.EVENT_PARAM_CONTENT, contentData);
+        params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_ID, contentId);
+        params.putString(AppEventsConstants.EVENT_PARAM_CURRENCY, currency);
+        logger.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT, price, params);
+    }
+
+    /**
+     * This function assumes logger is an instance of AppEventsLogger and has been
+     * created using AppEventsLogger.newLogger() call.
+     */
+    public void logAdClickEvent (String adType) {
+        Bundle params = new Bundle();
+        params.putString(AppEventsConstants.EVENT_PARAM_AD_TYPE, adType);
+        logger.logEvent(AppEventsConstants::EVENT_NAME_AD_CLICK, params);
     }
 
 
