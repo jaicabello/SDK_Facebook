@@ -6,6 +6,7 @@ var SDK_Facebook = {
     exec(success, error, 'SDK_Facebook', 'logEventSDKFacebook', [arg0]);
     },
     logAdClickEvent : function (adType) {
+	console.log('----------------Llamando a la funcion logAdClickEvent Facebook_SDK');
         exec('SDK_Facebook', 'logAdClickEvent',adType);
     }
         
