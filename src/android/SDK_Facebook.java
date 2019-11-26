@@ -63,24 +63,31 @@ public class SDK_Facebook extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        AppEventsLogger logger = AppEventsLogger.newLogger(this.cordova.getActivity());
-        //event name that we want to track
-        try {
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
+
             if (action.equals("logViewContentEvent")) {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT);
-                return true;
+                try {
+                    logger.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT);
+                    return true;
+                } catch (Exception e) {
+                    //TODO: handle exception
+                    callbackContext.error("Error ejecutando action: " + e);
+                    return false;
+                }
+                
             }
             if(action.equals("logAdClickEvent")){
-               logAdClickEvent(args[0]);
-               PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
-               callbackContext.sendPluginResult(pluginResult);
-               return true;
+               try {
+                    logAdClickEvent(args[0]);
+                    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
+                    callbackContext.sendPluginResult(pluginResult);
+                    return true;
+               } catch (Exception e) {
+                    //TODO: handle exception
+                    callbackContext.error("Error ejecutando action: " + e);
+                    return false;
+               }
             }   
-        } catch (Exception e) {
-            //TODO: handle exception
-            callbackContext.error("Error ejecutando action: " + e);
-            return false;
-        }
         callbackContext.error("No existe método: " + action);
         return false;
     }
@@ -91,6 +98,8 @@ public class SDK_Facebook extends CordovaPlugin {
      * created using AppEventsLogger.newLogger() call.
      */
     public void logViewContentEvent (String contentType, String contentData, String contentId, String currency, double price) {
+        
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, contentType);
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT, contentData);
@@ -103,6 +112,8 @@ public class SDK_Facebook extends CordovaPlugin {
      * created using AppEventsLogger.newLogger() call.
      */
     public void logAdClickEvent (String adType) {
+
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
         params.putString(AppEventsConstants.EVENT_PARAM_AD_TYPE, adType);
         logger.logEvent(AppEventsConstants::EVENT_NAME_AD_CLICK, params);
