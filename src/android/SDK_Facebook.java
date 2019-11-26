@@ -98,6 +98,7 @@ public class SDK_Facebook extends CordovaPlugin {
      * created using AppEventsLogger.newLogger() call.
      */
     public void logViewContentEvent (String contentType, String contentData, String contentId, String currency, double price) {
+        AppEventsLogger logger = AppEventsLogger.newLogger(this.cordova.getActivity());
         Bundle params = new Bundle();
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, contentType);
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT, contentData);
@@ -110,6 +111,7 @@ public class SDK_Facebook extends CordovaPlugin {
      * created using AppEventsLogger.newLogger() call.
      */
     public void logAdClickEvent (String adType) {
+        AppEventsLogger logger = AppEventsLogger.newLogger(this.cordova.getActivity());
         Bundle params = new Bundle();
         params.putString(AppEventsConstants.EVENT_PARAM_AD_TYPE, adType);
         logger.logEvent(AppEventsConstants::EVENT_NAME_AD_CLICK, params);
