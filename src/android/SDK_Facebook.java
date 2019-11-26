@@ -64,23 +64,30 @@ public class SDK_Facebook extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         AppEventsLogger logger = AppEventsLogger.newLogger(this.cordova.getActivity());
-        //event name that we want to track
-        try {
+
             if (action.equals("logViewContentEvent")) {
-                logger.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT);
-                return true;
+                try {
+                    logger.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT);
+                    return true;
+                } catch (Exception e) {
+                    //TODO: handle exception
+                    callbackContext.error("Error ejecutando action: " + e);
+                    return false;
+                }
+                
             }
             if(action.equals("logAdClickEvent")){
-               logAdClickEvent(args[0]);
-               PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
-               callbackContext.sendPluginResult(pluginResult);
-               return true;
+               try {
+                    logAdClickEvent(args[0]);
+                    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
+                    callbackContext.sendPluginResult(pluginResult);
+                    return true;
+               } catch (Exception e) {
+                    //TODO: handle exception
+                    callbackContext.error("Error ejecutando action: " + e);
+                    return false;
+               }
             }   
-        } catch (Exception e) {
-            //TODO: handle exception
-            callbackContext.error("Error ejecutando action: " + e);
-            return false;
-        }
         callbackContext.error("No existe método: " + action);
         return false;
     }
