@@ -118,6 +118,4 @@ public class SDK_Facebook extends CordovaPlugin {
         params.putString(AppEventsConstants.EVENT_PARAM_AD_TYPE, adType);
         logger.logEvent(AppEventsConstants::EVENT_NAME_AD_CLICK, params);
     }
-
-
 }

@@ -21,6 +21,8 @@
                 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
                 <uses-permission android:name="android.permission.WAKE_LOCK" />
             </config-file>
+
+            <source-file src="src/android/SDK_Facebook.java" target-dir="src/cordova/plugin/facebookplugin/SDK_Facebook" />
             
             <config-file target="res/values/strings.xml" parent="/*">
                  <string name="facebook_app_id">$APP_ID</string>

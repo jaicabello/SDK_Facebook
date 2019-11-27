@@ -3,12 +3,13 @@ var exec = require('cordova/exec');
 
 var SDK_Facebook = {
 	logViewContentEvent : function (arg0, success, error) {
-    		exec(success, error, 'SDK_Facebook', 'logViewContentEvent', [arg0]);
+		console.log('----------------Llamando a la funcion logViewContentEvent Facebook_SDK');	
+    	exec(success, error, 'SDK_Facebook', 'logViewContentEvent', [arg0]);
    	},
   	logAdClickEvent : function (arg0, success, error) {
-    		console.log('----------------Llamando a la funcion logAdClickEvent Facebook_SDK');	  
-    		exec(success, error, 'SDK_Facebook', 'logAdClickEvent', [arg0]);
-    	}
+    	console.log('----------------Llamando a la funcion logAdClickEvent Facebook_SDK');	  
+    	exec(success, error, 'SDK_Facebook', 'logAdClickEvent', [arg0]);
+    }
         
 };
 
