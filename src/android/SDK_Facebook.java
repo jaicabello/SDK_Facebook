@@ -84,7 +84,7 @@ public class SDK_Facebook extends CordovaPlugin {
 
             if (action.equals("logViewContentEvent")) {
                 try {
-                    logger.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT);
+                    logger.logEvent(this.EVENT_NAME_VIEWED_CONTENT);
                     return true;
                 } catch (Exception e) {
                     //TODO: handle exception
@@ -118,11 +118,11 @@ public class SDK_Facebook extends CordovaPlugin {
 
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
-        params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, contentType);
-        params.putString(AppEventsConstants.EVENT_PARAM_CONTENT, contentData);
-        params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_ID, contentId);
-        params.putString(AppEventsConstants.EVENT_PARAM_CURRENCY, currency);
-        logger.logEvent(AppEventsConstants.EVENT_NAME_VIEWED_CONTENT, price, params);
+        params.putString(this.EVENT_PARAM_CONTENT_TYPE, contentType);
+        params.putString(this.EVENT_PARAM_CONTENT, contentData);
+        params.putString(this.EVENT_PARAM_CONTENT_ID, contentId);
+        params.putString(this.EVENT_PARAM_CURRENCY, currency);
+        logger.logEvent(this.EVENT_NAME_VIEWED_CONTENT, price, params);
     }
     /**
      * This function assumes logger is an instance of AppEventsLogger and has been
@@ -132,7 +132,7 @@ public class SDK_Facebook extends CordovaPlugin {
 
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
-        params.putString(AppEventsConstants.EVENT_PARAM_AD_TYPE, adType);
-        logger.logEvent(AppEventsConstants::EVENT_NAME_AD_CLICK, params);
+        params.putString(this.EVENT_PARAM_AD_TYPE, adType);
+        logger.logEvent(this.EVENT_NAME_AD_CLICK, params);
     }
 }
