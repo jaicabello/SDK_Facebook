@@ -34,18 +34,6 @@ import com.facebook.share.widget.MessageDialog;
  */
 public class SDK_Facebook extends CordovaPlugin {
 
-    private static final int INVALID_ERROR_CODE = -2; //-1 is FacebookRequestError.INVALID_ERROR_CODE
-    private static final String PUBLISH_PERMISSION_PREFIX = "publish";
-    private static final String MANAGE_PERMISSION_PREFIX = "manage";
-    @SuppressWarnings("serial")
-    private static final Set<String> OTHER_PUBLISH_PERMISSIONS = new HashSet<String>() {
-        {
-            add("ads_management");
-            add("create_event");
-            add("rsvp_event");
-        }
-    };
-    private final String TAG = "SDK_Facebook";
 
     private CallbackManager callbackManager;
     private AppEventsLogger logger;
