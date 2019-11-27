@@ -34,6 +34,35 @@ import com.facebook.share.widget.MessageDialog;
  */
 public class SDK_Facebook extends CordovaPlugin {
 
+    /** Log this event when the user has viewed a form of content in the app. */
+    public static final String EVENT_NAME_VIEWED_CONTENT = "fb_mobile_content_view";
+
+    /**
+     * Parameter key used to specify a generic content type/family for the logged event, e.g.
+     * "music", "photo", "video".  Options to use will vary depending on the nature of the app.
+     */
+    public static final String EVENT_PARAM_CONTENT_TYPE = "fb_content_type";
+
+    /**
+     * Parameter key used to specify an ID for the specific piece of content being logged about.
+     * This could be an EAN, article identifier, etc., depending on the nature of the app.
+     */
+    public static final String EVENT_PARAM_CONTENT_ID = "fb_content_id";
+
+    public static final String EVENT_PARAM_CONTENT = "fb_content";
+
+     /**
+     * Parameter key used to specify currency used with logged event.  E.g. "USD", "EUR", "GBP". See
+     * <a href="http://en.wikipedia.org/wiki/ISO_4217">ISO-4217</a>
+     * for specific values.
+     */
+    public static final String EVENT_PARAM_CURRENCY = "fb_currency";
+    
+    // Constantes para log event adclick ( evento tipo banner)
+
+    public static final String EVENT_NAME_AD_CLICK = "AdClick";
+    public static final String EVENT_PARAM_AD_TYPE  = "ad_type";
+
 
     private CallbackManager callbackManager;
     private AppEventsLogger logger;
