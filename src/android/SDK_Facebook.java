@@ -63,6 +63,9 @@ public class SDK_Facebook extends CordovaPlugin {
     public static final String EVENT_NAME_AD_CLICK = "AdClick";
     public static final String EVENT_PARAM_AD_TYPE  = "ad_type";
 
+    // constante para los logs 
+    private static final String TAG = "SDK_Facebook";
+
 
     private CallbackManager callbackManager;
     private AppEventsLogger logger;
@@ -81,13 +84,16 @@ public class SDK_Facebook extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
-
+        Log.i(TAG,"Comenzo la ejecuccion del metodo execute");
             if (action.equals("logViewContentEvent")) {
                 try {
+                    Log.i(TAG,"Se llama al action logViewContentEvent");
                     logger.logEvent(EVENT_NAME_VIEWED_CONTENT);
+                    Log.i(TAG,"Fin del llamado al action logViewContentEvent");
                     return true;
                 } catch (Exception e) {
                     //TODO: handle exception
+                    Log.e(TAG,"ERROR al llamar el action logViewContentEvent");
                     callbackContext.error("Error ejecutando action: " + e);
                     return false;
                 }
@@ -95,13 +101,18 @@ public class SDK_Facebook extends CordovaPlugin {
             }
             if(action.equals("logAdClickEvent")){
                try {
-
+                    
+                    Log.i(TAG,"Se llama al action logAdClickEvent");
+                     Log.i(TAG,"args: "+args.getString(0));
                     logAdClickEvent(args.getString(0));
+                    Log.i(TAG,"Fin del llamado al action logAdClickEvent");
                     PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
                     callbackContext.sendPluginResult(pluginResult);
+                    Log.i(TAG,"Fin del llamado al action logAdClickEvent");
                     return true;
                } catch (Exception e) {
                     //TODO: handle exception
+                    Log.e(TAG,"ERROR al llamar el action logAdClickEvent");
                     callbackContext.error("Error ejecutando action: " + e);
                     return false;
                }
@@ -133,6 +144,7 @@ public class SDK_Facebook extends CordovaPlugin {
 
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
+        Log.i(TAG,"PARAMS adType: "+adType);
         params.putString(EVENT_PARAM_AD_TYPE, adType);
         logger.logEvent(EVENT_NAME_AD_CLICK, params);
     }
