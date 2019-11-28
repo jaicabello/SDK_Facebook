@@ -39,9 +39,6 @@
             <config-file parent="/*" target="AndroidManifest.xml">
                 <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
                 <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />
-                <activity android:name="com.facebook.FacebookActivity"
-                    android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-                    android:label="@string/fb_app_name" />
                 <uses-permission android:name="android.permission.INTERNET" />
                 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
                 <uses-permission android:name="android.permission.WAKE_LOCK" />
