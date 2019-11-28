@@ -1,11 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
     <plugin id="cordova-plugin-facebookplugin" version="0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
         <name>SDK_Facebook</name>
-        <preference name="APP_ID"/>
-        <preference name="APP_NAME"/>
-        <preference name="FACEBOOK_HYBRID_APP_EVENTS" default="false" />
-        <preference name="FACEBOOK_ANDROID_SDK_VERSION" default="5.5.2"/>
-
+        
     <engines>
         <!-- Requires > 3.5.0 because of the custom Framework tag for iOS [CB-6698] -->
         <!-- Requires > 4.0.0 because of the Framework tag for Android that uses gradle -->
@@ -23,17 +19,9 @@
                 </feature>
             </config-file>
             
-            <!-- Used for cordova-android 7 -->
-            <config-file target="app/src/main/res/values/facebookconnect.xml" parent="/*">
-                <string name="facebook_app_id">$APP_ID</string>
-                <string name="fb_app_id">$APP_ID</string>
-                <string name="fb_app_name">$APP_NAME</string>
-                <bool name="fb_hybrid_app_events">$FACEBOOK_HYBRID_APP_EVENTS</bool>
-            </config-file>
-            
             <config-file target= "res/values/strings.xml" parent="/*">
-                <string name="facebook_app_id">$APP_ID</string>
-                <string name="fb_app_name">$APP_NAME</string>
+                <string name="facebook_app_id">375010693137631</string>
+                <string name="fb_app_name">cl.entel.appswlsdesa</string>
             </config-file>
 
             <config-file parent="/*" target="AndroidManifest.xml">
