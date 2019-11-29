@@ -79,11 +79,17 @@ public class SDK_Facebook extends CordovaPlugin {
 
 
 
-    
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // Initialize the SDK before executing any other operations,
+        FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
+        AppEventsLogger.activateApp(this);
+   }
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
+        //FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Log.i(TAG,"Comenzo la ejecuccion del metodo execute");
             if (action.equals("logViewContentEvent")) {
