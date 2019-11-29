@@ -79,13 +79,7 @@ public class SDK_Facebook extends CordovaPlugin {
 
 
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        // Initialize the SDK before executing any other operations,
-        FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
-        AppEventsLogger.activateApp(this);
-   }
+ 
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
