@@ -28,8 +28,8 @@
                 <string name="fb_app_name">$APP_NAME</string>
                 <bool name="fb_hybrid_app_events">$FACEBOOK_HYBRID_APP_EVENTS</bool>
             </config-file>
-
-            <config-file parent="/*" target="AndroidManifest.xml">
+            
+            <config-file target="AndroidManifest.xml" parent="application">
                 <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id"/>
                 <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />
                 <uses-permission android:name="android.permission.INTERNET" />
