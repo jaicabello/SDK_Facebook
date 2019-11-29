@@ -29,7 +29,7 @@
                 <bool name="fb_hybrid_app_events">$FACEBOOK_HYBRID_APP_EVENTS</bool>
             </config-file>
 
-            <config-file target="AndroidManifest.xml" parent="/application">
+            <config-file target="AndroidManifest.xml" parent="/manifest/application">
                 <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id"/>
                 <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />                
             </config-file>
