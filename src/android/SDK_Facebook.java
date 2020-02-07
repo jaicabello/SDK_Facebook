@@ -141,6 +141,10 @@ public class SDK_Facebook extends CordovaPlugin {
      * This function assumes logger is an instance of AppEventsLogger and has been
      * created using AppEventsLogger.newLogger() call.
      */
+
+     /*
+        Se registra un clic en un anuncio de una plataforma de terceros dentro de tu aplicación.
+     */ 
     public void logAdClickEvent (String adType) {
 
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
