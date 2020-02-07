@@ -117,7 +117,26 @@ public class SDK_Facebook extends CordovaPlugin {
                     callbackContext.error("Error ejecutando action: " + e);
                     return false;
                }
-            }   
+            }
+            
+            if(action.equals("logOnButtonClickEvent")){
+                try {
+                     
+                     Log.i(TAG,"Se llama al action logOnButtonClickEvent");
+                      Log.i(TAG,"args: "+args.getString(0));
+                     logAdClickEvent(args.getString(0));
+                     Log.i(TAG,"Fin del llamado al action logOnButtonClickEvent");
+                     PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
+                     callbackContext.sendPluginResult(pluginResult);
+                     Log.i(TAG,"Fin del llamado al action logOnButtonClickEvent");
+                     return true;
+                } catch (Exception e) {
+                     //TODO: handle exception
+                     Log.e(TAG,"ERROR al llamar el action logOnButtonClickEvent");
+                     callbackContext.error("Error ejecutando action: " + e);
+                     return false;
+                }
+             }
         callbackContext.error("No existe método: " + action);
         return false;
     }
@@ -152,5 +171,21 @@ public class SDK_Facebook extends CordovaPlugin {
         Log.i(TAG,"PARAMS adType: "+adType);
         params.putString(EVENT_PARAM_AD_TYPE, adType);
         logger.logEvent(EVENT_NAME_AD_CLICK, params);
+    }
+
+    /**
+     * This function assumes logger is an instance of AppEventsLogger and has been
+     * created using AppEventsLogger.newLogger() call.
+    */
+
+    /*Se marca cuando se hace click en un boton*/ 
+
+    public void logOnButtonClickEvent (String nameButton) {
+
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
+        Bundle params = new Bundle();
+        Log.i(TAG,"nameButton: "+nameButton);
+        params.putString("nameButton", nameButton);
+        logger.logEvent("onButtonClick", params);
     }
 }
