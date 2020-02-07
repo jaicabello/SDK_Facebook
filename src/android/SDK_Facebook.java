@@ -132,7 +132,7 @@ public class SDK_Facebook extends CordovaPlugin {
                      return true;
                 } catch (Exception e) {
                      //TODO: handle exception
-                     Log.e(TAG,"ERROR al llamar el action logOnButtonClickEvent");
+                     Log.e(TAG,"ERROR al llamar el action logEventForFacebook");
                      callbackContext.error("Error ejecutando action: " + e);
                      return false;
                 }
@@ -184,6 +184,7 @@ public class SDK_Facebook extends CordovaPlugin {
 
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
+        Log.i(TAG,"PARAMS eventName: "+eventName);
         params.putString("eventName", eventName);
         params.putString("parameters", parameters);
         logger.logEvent("logEventForFacebook", params);
