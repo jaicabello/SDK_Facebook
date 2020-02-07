@@ -3,7 +3,7 @@ var exec = require('cordova/exec');
 
 var SDK_Facebook = {
 
-	logEventForFacebook : function (name, param, success, error) {
+	logEventForFacebook : function (name, params, success, error) {
 		console.log('----------------Llamando a la funcion logEventForFacebook Facebook_SDK');	
 		exec(success, error, 'SDK_Facebook', 'logEventForFacebook',[name, params]);
    	},
