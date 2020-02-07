@@ -15,6 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Iterator;
+
 import com.facebook.FacebookSdk;
 import com.facebook.CallbackManager;
 import com.facebook.share.model.ShareOpenGraphObject;
@@ -186,7 +188,12 @@ public class SDK_Facebook extends CordovaPlugin {
         Bundle params = new Bundle();
         Log.i(TAG,"PARAMS eventName: "+eventName);
         params.putString("eventName", eventName);
-        params.putString("parameters", parameters);
+        Iterator iter = parameters.keys();
+        while (iter.hasNext()) {
+            String key = (String) iter.next();
+            Object value = params.get(key);
+            params.putString(key, value.toString());
+        }
         logger.logEvent("logEventForFacebook", params);
     }
 }
