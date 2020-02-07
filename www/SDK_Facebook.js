@@ -2,6 +2,11 @@ var exec = require('cordova/exec');
 
 
 var SDK_Facebook = {
+
+	logEventForFacebook : function (name, param, success, error) {
+		console.log('----------------Llamando a la funcion logEventForFacebook Facebook_SDK');	
+		exec(success, error, 'SDK_Facebook', 'logEventForFacebook',[name, params]);
+   	},
 	logViewContentEvent : function (arg0, success, error) {
 		console.log('----------------Llamando a la funcion logViewContentEvent Facebook_SDK');	
     	exec(success, error, 'SDK_Facebook', 'logViewContentEvent', [arg0]);
@@ -9,6 +14,10 @@ var SDK_Facebook = {
   	logAdClickEvent : function (arg0, success, error) {
     	console.log('----------------Llamando a la funcion logAdClickEvent Facebook_SDK');	  
     	exec(success, error, 'SDK_Facebook', 'logAdClickEvent', [arg0]);
+	},
+	logOnButtonClickEvent : function (arg0, success, error) {
+    	console.log('----------------Llamando a la funcion logOnButtonClickEvent Facebook_SDK');	  
+    	exec(success, error, 'SDK_Facebook', 'logOnButtonClickEvent', [arg0]);
     }
         
 };
