@@ -100,7 +100,7 @@ public class SDK_Facebook extends CordovaPlugin {
                 }
                 
             }
-            if(action.equals("logAdClickEvent")){
+            else if(action.equals("logAdClickEvent")){
                try {
                     
                     Log.i(TAG,"Se llama al action logAdClickEvent");
@@ -119,16 +119,16 @@ public class SDK_Facebook extends CordovaPlugin {
                }
             }
             
-            if(action.equals("logOnButtonClickEvent")){
+            else if(action.equals("logEventForFacebook")){
                 try {
                      
-                     Log.i(TAG,"Se llama al action logOnButtonClickEvent");
+                     Log.i(TAG,"Se llama al action logEventForFacebook");
                       Log.i(TAG,"args: "+args.getString(0));
-                     logAdClickEvent(args.getString(0));
-                     Log.i(TAG,"Fin del llamado al action logOnButtonClickEvent");
+                      this.logEventForFacebook(args.getString(0), args.getJSONObject(1));
+                     Log.i(TAG,"Fin del llamado al action logEventForFacebook");
                      PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
                      callbackContext.sendPluginResult(pluginResult);
-                     Log.i(TAG,"Fin del llamado al action logOnButtonClickEvent");
+                     Log.i(TAG,"Fin del llamado al action logEventForFacebook");
                      return true;
                 } catch (Exception e) {
                      //TODO: handle exception
@@ -173,19 +173,19 @@ public class SDK_Facebook extends CordovaPlugin {
         logger.logEvent(EVENT_NAME_AD_CLICK, params);
     }
 
+
+    /*Se marca un evento tipo firabase cuando se hace click en algun boton o imagen o seccion dentro de la app*/ 
+
     /**
      * This function assumes logger is an instance of AppEventsLogger and has been
      * created using AppEventsLogger.newLogger() call.
     */
-
-    /*Se marca cuando se hace click en un boton*/ 
-
-    public void logOnButtonClickEvent (String nameButton) {
+    public void logEventForFacebook (String eventName, JSONObject parameters) {
 
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
-        Log.i(TAG,"nameButton: "+nameButton);
-        params.putString("nameButton", nameButton);
-        logger.logEvent("onButtonClick", params);
+        params.putString("eventName", eventName);
+        params.putString("parameters", parameters);
+        logger.logEvent("logEventForFacebook", params);
     }
 }
