@@ -1,48 +1,47 @@
 <?xml version='1.0' encoding='utf-8'?>
     <plugin id="cordova-plugin-facebookplugin" version="0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
         <name>SDK_Facebook</name>
-        <preference name="APP_ID"/>
-        <preference name="APP_NAME"/>
-        <preference name="FACEBOOK_HYBRID_APP_EVENTS" default="false" />
-  
-
-    <engines>
-        <!-- Requires > 3.5.0 because of the custom Framework tag for iOS [CB-6698] -->
-        <!-- Requires > 4.0.0 because of the Framework tag for Android that uses gradle -->
-        <engine name="cordova-android" version=">=3.5.0" />
-        <engine name="cordova-ios" version=">=3.5.0" />
-    </engines>
+        <preference name="APP_ID" />
+        <preference name="APP_NAME" />
+        <preference default="false" name="FACEBOOK_HYBRID_APP_EVENTS" />
+        <engines>
+            <engine name="cordova-android" version="&gt;=3.5.0" />
+            <engine name="cordova-ios" version="&gt;=3.5.0" />
+        </engines>
         <js-module name="SDK_Facebook" src="www/SDK_Facebook.js">
             <clobbers target="cordova.plugins.SDK_Facebook" />
         </js-module>
+        <!-- ANDROID -->
         <platform name="android">
-            
             <config-file parent="/*" target="res/xml/config.xml">
                 <feature name="SDK_Facebook">
                     <param name="android-package" value="cordova.plugin.facebookplugin.SDK_Facebook" />
                 </feature>
             </config-file>
-            
-            <config-file target="res/values/strings.xml" parent="/*">
+            <config-file parent="/*" target="res/values/strings.xml">
                 <string name="fb_app_id">$APP_ID</string>
                 <string name="fb_app_name">$APP_NAME</string>
                 <bool name="fb_hybrid_app_events">$FACEBOOK_HYBRID_APP_EVENTS</bool>
             </config-file>
-
-            <config-file target="AndroidManifest.xml" parent="/manifest/application">
-                <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id"/>
-                <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />                
+            <config-file parent="/manifest/application" target="AndroidManifest.xml">
+                <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/fb_app_id" />
+                <meta-data android:name="com.facebook.sdk.ApplicationName" android:value="@string/fb_app_name" />
             </config-file>
-
-            <config-file target="AndroidManifest.xml" parent="/manifest">
+            <config-file parent="/manifest" target="AndroidManifest.xml">
                 <uses-permission android:name="android.permission.INTERNET" />
                 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
                 <uses-permission android:name="android.permission.WAKE_LOCK" />
             </config-file>
-
-            
-            <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
+            <framework custom="true" src="src/android/build.gradle" type="gradleReference" />
             <source-file src="src/android/SDK_Facebook.java" target-dir="src/cordova/plugin/facebookplugin/SDK_Facebook" />
-
+        </platform>
+        <!--IOS -->
+        <platform name="ios">
+            <config-file parent="/*" target="config.xml">
+                <feature name="SDK_Facebook">
+                    <param name="ios-package" value="SDK_Facebook" />
+                </feature>
+            </config-file>
+            <source-file src="src/ios/SDK_Facebook.m" />
         </platform>
     </plugin>
