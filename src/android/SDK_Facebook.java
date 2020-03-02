@@ -190,13 +190,11 @@ public class SDK_Facebook extends CordovaPlugin {
         params.putString("eventName", eventName);
         Iterator<String> iter = parameters.keys();
         while (iter.hasNext()) {
-            String key = iter.next();
-            if(parameters.get(key) instanceOf JSONObject){
-                Object value = parameters.get(key);
-            }
+            String key = (String) iter.next();
+            String value = parameters.getString(key);
             Log.i(TAG,"parameters key: "+key);
-            Log.i(TAG,"parameters value: "+value.toString());
-            params.putString(key, value.toString());
+            Log.i(TAG,"parameters value: "+value);
+            params.putString(key, value);
         }
         logger.logEvent(eventName, params);
     }
