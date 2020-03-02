@@ -199,6 +199,6 @@ public class SDK_Facebook extends CordovaPlugin {
                 Log.w(TAG, "El parametro no es string para la key" + key);
             }
         }
-        logger.logEvent("logEventForFacebook",eventName, params);
+        logger.logEvent(eventName, params);
     }
 }
