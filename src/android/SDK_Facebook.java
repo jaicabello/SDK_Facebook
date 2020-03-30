@@ -26,6 +26,7 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.share.widget.ShareDialog;
 import com.facebook.share.widget.GameRequestDialog;
 import com.facebook.share.widget.MessageDialog;
+import com.facebook.applinks.AppLinkData;
 
 
 
@@ -104,7 +105,6 @@ public class SDK_Facebook extends CordovaPlugin {
             }
             else if(action.equals("logAdClickEvent")){
                try {
-                    
                     Log.i(TAG,"Se llama al action logAdClickEvent");
                      Log.i(TAG,"args: "+args.getString(0));
                     logAdClickEvent(args.getString(0));
@@ -123,7 +123,6 @@ public class SDK_Facebook extends CordovaPlugin {
             
             else if(action.equals("logEventForFacebook")){
                 try {
-                     
                      Log.i(TAG,"Se llama al action logEventForFacebook");
                       Log.i(TAG,"args: "+args.getString(0));
                       this.logEventForFacebook(args.getString(0), args.getJSONObject(1));
@@ -139,6 +138,12 @@ public class SDK_Facebook extends CordovaPlugin {
                      return false;
                 }
              }
+             else if (action.equals("getDeferredApplink")) {
+                Log.i(TAG,"Se llama al action executeGetDeferredApplink");
+                executeGetDeferredApplink(args, callbackContext);
+                Log.i(TAG,"Fin del llamado al action executeGetDeferredApplink");
+                return true;
+            } 
         callbackContext.error("No existe método: " + action);
         return false;
     }
@@ -201,4 +206,30 @@ public class SDK_Facebook extends CordovaPlugin {
         }
         logger.logEvent(eventName, params);
     }
+    // DEEP LINKS DIFERIDOS  
+    private void executeGetDeferredApplink(JSONArray args,
+                                           final CallbackContext callbackContext) {
+        AppLinkData.fetchDeferredAppLinkData(cordova.getActivity().getApplicationContext(),
+                new AppLinkData.CompletionHandler() {
+                    @Override
+                    public void onDeferredAppLinkDataFetched(
+                            AppLinkData appLinkData) {
+                        PluginResult pr;
+                        if (appLinkData == null) {
+                            pr = new PluginResult(PluginResult.Status.OK, "");
+                        } else {
+                            pr = new PluginResult(PluginResult.Status.OK, appLinkData.getTargetUri().toString());
+                        }
+
+                        callbackContext.sendPluginResult(pr);
+                        return;
+                    }
+                });
+    }
+
+
+
+
+
+    
 }

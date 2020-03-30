@@ -6,6 +6,10 @@ var SDK_Facebook = {
 	logEventForFacebook : function (name, params, success, error) {
 		console.log('----------------Llamando a la funcion logEventForFacebook Facebook_SDK');	
 		exec(success, error, 'SDK_Facebook', 'logEventForFacebook',[name, params]);
+	   },
+	getDeferredApplink : function (name, params, success, error) {
+		console.log('----------------Llamando a la funcion getDeferredApplink Facebook_SDK');	
+		exec(success, error, 'SDK_Facebook', 'getDeferredApplink',[arg0]);
    	},
 	logViewContentEvent : function (arg0, success, error) {
 		console.log('----------------Llamando a la funcion logViewContentEvent Facebook_SDK');	
