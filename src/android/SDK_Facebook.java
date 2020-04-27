@@ -86,6 +86,8 @@ public class SDK_Facebook extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        FacebookSdk.setAutoInitEnabled(true);
+        FacebookSdk.fullyInitialize();
         FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Log.i(TAG,"Comenzo la ejecuccion del metodo execute");
@@ -220,7 +222,6 @@ public class SDK_Facebook extends CordovaPlugin {
                         } else {
                             pr = new PluginResult(PluginResult.Status.OK, appLinkData.getTargetUri().toString());
                         }
-
                         callbackContext.sendPluginResult(pr);
                         return;
                     }
