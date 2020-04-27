@@ -86,6 +86,7 @@ public class SDK_Facebook extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        
         FacebookSdk.setAutoInitEnabled(true);
         FacebookSdk.fullyInitialize();
         FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
@@ -211,6 +212,7 @@ public class SDK_Facebook extends CordovaPlugin {
     // DEEP LINKS DIFERIDOS  
     private void executeGetDeferredApplink(JSONArray args,
                                            final CallbackContext callbackContext) {
+        Log.i(TAG,"DEEP LINKS DIFERIDOS EXECUTE");
         AppLinkData.fetchDeferredAppLinkData(cordova.getActivity().getApplicationContext(),
                 new AppLinkData.CompletionHandler() {
                     @Override
@@ -222,6 +224,7 @@ public class SDK_Facebook extends CordovaPlugin {
                         } else {
                             pr = new PluginResult(PluginResult.Status.OK, appLinkData.getTargetUri().toString());
                         }
+
                         callbackContext.sendPluginResult(pr);
                         return;
                     }
