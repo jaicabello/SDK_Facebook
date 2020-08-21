@@ -125,7 +125,7 @@ public class SDK_Facebook extends CordovaPlugin {
                 }
             }else if(action.equals("logEventForFacebook")){
                 
-                cordova.getActivity().runOnUiThread(new Runnable(){
+                Runnable runnable = new Runnable() {
                     public void run() {
                         try {
                             Log.i(TAG,"Se llama al action logEventForFacebook");
@@ -135,15 +135,16 @@ public class SDK_Facebook extends CordovaPlugin {
                             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
                             callbackContext.sendPluginResult(pluginResult);
                             Log.i(TAG,"Fin del llamado al action logEventForFacebook");
-                            return true;
                         } catch (Exception e) {
                             //TODO: handle exception
                             Log.e(TAG,"ERROR al llamar el action logEventForFacebook");
                             callbackContext.error("Error ejecutando action: " + e);
                             return false;
                         }
-                }});
-                
+                        return true;
+                    }
+                };
+                cordova.getActivity().runOnUiThread(runnable);
              }else if (action.equals("getDeferredApplink")) {
                 Log.i(TAG,"Se llama al action executeGetDeferredApplink");
                 executeGetDeferredApplink(args, callbackContext);
@@ -232,11 +233,5 @@ public class SDK_Facebook extends CordovaPlugin {
                         return;
                     }
                 });
-    }
-
-
-
-
-
-    
+    }    
 }
