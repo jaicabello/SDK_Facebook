@@ -142,7 +142,6 @@ public class SDK_Facebook extends CordovaPlugin {
                             callbackContext.error("Error ejecutando action: " + e);
                             return false;
                         }
-                        return true;
                     }
                 };
                 cordova.getActivity().runOnUiThread(runnable);
