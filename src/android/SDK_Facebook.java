@@ -122,7 +122,7 @@ public class SDK_Facebook extends CordovaPlugin {
                         Log.e(TAG,"ERROR al llamar el action logAdClickEvent");
                         callbackContext.error("Error ejecutando action: " + e);
                         return false;
-                    }
+                    });
                 }
             }
             
