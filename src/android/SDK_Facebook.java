@@ -130,7 +130,7 @@ public class SDK_Facebook extends CordovaPlugin {
                         try {
                             Log.i(TAG,"Se llama al action logEventForFacebook");
                             Log.i(TAG,"args: "+args.getString(0));
-                            this.logEventForFacebook(args.getString(0), args.getJSONObject(1));
+                            logEventForFacebook(args.getString(0), args.getJSONObject(1));
                             Log.i(TAG,"Fin del llamado al action logEventForFacebook");
                             PluginResult pluginResult = new PluginResult(PluginResult.Status.OK);
                             callbackContext.sendPluginResult(pluginResult);
@@ -234,11 +234,5 @@ public class SDK_Facebook extends CordovaPlugin {
                         return;
                     }
                 });
-    }
-
-
-
-
-
-    
+    }    
 }
