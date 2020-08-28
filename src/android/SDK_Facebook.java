@@ -213,7 +213,7 @@ public class SDK_Facebook extends CordovaPlugin {
     private void executeGetDeferredApplink(JSONArray args,
                                            final CallbackContext callbackContext) {
         Log.i(TAG,"DEEP LINKS DIFERIDOS EXECUTE");
-        AppLinkData.fetchDeferredAppLinkData(cordova.getActivity().getApplicationContext(),
+        AppLinkData.fetchDeferredAppLinkData(cordova.getActivity().getApplicationContext();
                 new AppLinkData.CompletionHandler() {
                     @Override
                     public void onDeferredAppLinkDataFetched(
