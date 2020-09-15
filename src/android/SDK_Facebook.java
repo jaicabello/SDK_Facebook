@@ -116,8 +116,7 @@ public class SDK_Facebook extends CordovaPlugin {
                     return true;
                 } catch (Exception e) {
                     //TODO: handle exception
-                    Log.e(TAG,"ERROR al llamar el action 
-                          Event");
+                    Log.e(TAG,"ERROR al llamar el action Event");
                     callbackContext.error("Error ejecutando action: " + e);
                     return false;
                 }
