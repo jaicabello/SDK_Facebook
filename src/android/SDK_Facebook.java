@@ -537,7 +537,7 @@ public class SDK_Facebook extends CordovaPlugin {
      * This function assumes logger is an instance of AppEventsLogger and has been
      * created using AppEventsLogger.newLogger() call.
     */
-    public void logEventForFacebook (String eventName, JSONObject parameters) throws JSONException{
+    public void logEventForFacebook (String eventName, JSONObject parameters){
 
         final Bundle params = new Bundle();
         Log.i(TAG,"PARAMS eventName: "+eventName);
@@ -545,14 +545,9 @@ public class SDK_Facebook extends CordovaPlugin {
         while (iter.hasNext()) {
             String key = (String) iter.next();
             Object value = parameters.get(key);
-            try{
-                
-                Log.i(TAG,"parameters key: "+key);
-                Log.i(TAG,"parameters value: "+value);
-                params.putString(key, value.toString());    
-            }catch (JSONException e) {
-                Log.w(TAG, "El parametro no es string para la key" + key);
-            }
+            Log.i(TAG,"parameters key: "+key);
+            Log.i(TAG,"parameters value: "+value);
+            params.putString(key, value.toString());    
         }
         logger.logEvent(eventName, params);
     }
