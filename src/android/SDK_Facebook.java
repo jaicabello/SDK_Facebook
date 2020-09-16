@@ -148,7 +148,7 @@ public class SDK_Facebook extends CordovaPlugin {
                     cordova.getThreadPool().execute(new Runnable(){
                         public void run(){
                             try{
-                                logEventForFacebook(args.getString(0), args.getJSONObject(1));
+                                logEventForFacebook(args.getString(0), args.getJSONObject(1),callbackContext);
                             }
                             catch (JSONException e){
                                 //e.printStackTrace();
@@ -542,7 +542,7 @@ public class SDK_Facebook extends CordovaPlugin {
      * This function assumes logger is an instance of AppEventsLogger and has been
      * created using AppEventsLogger.newLogger() call.
     */
-    private void logEventForFacebook (String eventName, JSONObject parameters)throws JSONException{
+      private void logEventForFacebook (String eventName, JSONObject parameters,CallbackContext callbackContext)throws JSONException{
         
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         final Bundle params = new Bundle();
@@ -558,9 +558,12 @@ public class SDK_Facebook extends CordovaPlugin {
         }
         try {
           logger.logEvent(eventName, params);
+          callbackContext.success();
           Log.d(TAG, "logEvent success");
         } catch (Exception e) {
+           callbackContext.error(e.getMessage());
            Log.w(TAG, "Error al llamar al action logEventForFacebook"); 
+           
         }
 
         
