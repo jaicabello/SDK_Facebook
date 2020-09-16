@@ -348,6 +348,7 @@ public class SDK_Facebook extends CordovaPlugin {
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
 
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, cntType);
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT, cntData);
@@ -378,6 +379,7 @@ public class SDK_Facebook extends CordovaPlugin {
 
     private void executeEventSearch(JSONArray args, CallbackContext callbackContext) throws JSONException
     {
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         String cntType = args.getString(0);
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
@@ -405,6 +407,7 @@ public class SDK_Facebook extends CordovaPlugin {
             return;
         }
 
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         String cntType = args.getString(0);
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
@@ -450,7 +453,8 @@ public class SDK_Facebook extends CordovaPlugin {
             callbackContext.error("Invalid arguments");
             return;
         }
-
+        
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         String cntType = args.getString(0);
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
@@ -475,7 +479,8 @@ public class SDK_Facebook extends CordovaPlugin {
             callbackContext.error("Invalid arguments");
             return;
         }
-
+        
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         String cntType = args.getString(0);
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
@@ -538,7 +543,8 @@ public class SDK_Facebook extends CordovaPlugin {
      * created using AppEventsLogger.newLogger() call.
     */
     public void logEventForFacebook (String eventName, JSONObject parameters)throws JSONException{
-
+        
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         final Bundle params = new Bundle();
         Log.i(TAG,"PARAMS eventName: "+eventName);
         Iterator<String> iter = parameters.keys();
