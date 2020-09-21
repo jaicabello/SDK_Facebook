@@ -87,7 +87,7 @@ public class SDK_Facebook extends CordovaPlugin {
 
 
     @Override
-    public void initialize{
+    public void initialize(){
         
         FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
