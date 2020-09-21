@@ -16,6 +16,7 @@
             <config-file parent="/*" target="res/xml/config.xml">
                 <feature name="SDK_Facebook">
                     <param name="android-package" value="cordova.plugin.facebookplugin.SDK_Facebook" />
+                    <param name="onload" value="true" />
                 </feature>
             </config-file>
             <config-file parent="/*" target="res/values/strings.xml">
