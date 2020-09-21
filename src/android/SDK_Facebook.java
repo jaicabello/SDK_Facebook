@@ -86,27 +86,32 @@ public class SDK_Facebook extends CordovaPlugin {
     private MessageDialog messageDialog;
 
 
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        
+        super.initialize(cordova, webView);
+
+        FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
+        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
+        enableHybridAppEvents();
+
+        // your init code here
+
+        FacebookSdk.setAutoInitEnabled(true);
+        FacebookSdk.fullyInitialize();
+        FacebookSdk.setIsDebugEnabled(true);
+        FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS);
+        FacebookSdk.setAutoLogAppEventsEnabled(true);
+        FacebookSdk.setAdvertiserIDCollectionEnabled(true);
+    }
+
+
 
  
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         
-        FacebookSdk.setAutoInitEnabled(true);
-        //FacebookSdk.fullyInitialize();
-        //FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
-
-        FacebookSdk.fullyInitialize();
-
-        FacebookSdk.setIsDebugEnabled(true);
-        FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS);
-
-        FacebookSdk.setAutoLogAppEventsEnabled(true);
-
-        FacebookSdk.setAdvertiserIDCollectionEnabled(true);
-        
-
-        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Log.i(TAG,"Comenzo la ejecuccion del metodo execute");
             if (action.equals("logViewContentEvent")) {
                 try {
@@ -348,7 +353,6 @@ public class SDK_Facebook extends CordovaPlugin {
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
 
-        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, cntType);
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT, cntData);
@@ -379,7 +383,6 @@ public class SDK_Facebook extends CordovaPlugin {
 
     private void executeEventSearch(JSONArray args, CallbackContext callbackContext) throws JSONException
     {
-        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         String cntType = args.getString(0);
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
@@ -406,8 +409,6 @@ public class SDK_Facebook extends CordovaPlugin {
             callbackContext.error("Invalid arguments");
             return;
         }
-
-        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         String cntType = args.getString(0);
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
@@ -453,8 +454,7 @@ public class SDK_Facebook extends CordovaPlugin {
             callbackContext.error("Invalid arguments");
             return;
         }
-        
-        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
+
         String cntType = args.getString(0);
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
@@ -479,8 +479,7 @@ public class SDK_Facebook extends CordovaPlugin {
             callbackContext.error("Invalid arguments");
             return;
         }
-        
-        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
+
         String cntType = args.getString(0);
         String cntData = args.getString(1);
         String cntId   = args.getString(2);
@@ -510,7 +509,6 @@ public class SDK_Facebook extends CordovaPlugin {
      */
     public void logViewContentEvent (String contentType, String contentData, String contentId, String currency, double price) {
 
-        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
         params.putString(EVENT_PARAM_CONTENT_TYPE, contentType);
         params.putString(EVENT_PARAM_CONTENT, contentData);
@@ -528,7 +526,6 @@ public class SDK_Facebook extends CordovaPlugin {
      */ 
     public void logAdClickEvent (String adType) {
 
-        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         Bundle params = new Bundle();
         Log.i(TAG,"PARAMS adType: "+adType);
         params.putString(EVENT_PARAM_AD_TYPE, adType);
@@ -544,7 +541,6 @@ public class SDK_Facebook extends CordovaPlugin {
     */
       private void logEventForFacebook (String eventName, JSONObject parameters,CallbackContext callbackContext)throws JSONException{
         
-        logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         final Bundle params = new Bundle();
         Log.i(TAG,"PARAMS eventName: "+eventName);
         Iterator iter = parameters.keys();
