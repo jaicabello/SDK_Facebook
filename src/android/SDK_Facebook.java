@@ -601,5 +601,21 @@ public class SDK_Facebook extends CordovaPlugin {
         params.putInt(AppEventsConstants.EVENT_PARAM_PAYMENT_INFO_AVAILABLE, paymentInfoAvailable ? 1 : 0);
         params.putString(AppEventsConstants.EVENT_PARAM_CURRENCY, currency);
         logger.logEvent(AppEventsConstants.EVENT_NAME_INITIATED_CHECKOUT, totalPrice, params);
-    }   
+    } 
+    private void enableHybridAppEvents() {
+        try {
+            Context appContext = cordova.getActivity().getApplicationContext();
+            Resources res = appContext.getResources();
+            int enableHybridAppEventsId = res.getIdentifier("fb_hybrid_app_events", "bool", appContext.getPackageName());
+            boolean enableHybridAppEvents = enableHybridAppEventsId != 0 && res.getBoolean(enableHybridAppEventsId);
+            if (enableHybridAppEvents) {
+                AppEventsLogger.augmentWebView((WebView) this.webView.getView(), appContext);
+                Log.d(TAG, "FB Hybrid app events are enabled");
+            } else {
+                Log.d(TAG, "FB Hybrid app events are not enabled");
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "FB Hybrid app events cannot be enabled");
+        }
+    }  
 }
