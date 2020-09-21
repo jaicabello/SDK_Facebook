@@ -11,9 +11,13 @@ import android.webkit.WebView;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
+import org.apache.cordova.CordovaInterface;
+import org.apache.cordova.CordovaWebView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
 
 import java.math.BigDecimal;
 import java.util.Currency;
@@ -87,8 +91,8 @@ public class SDK_Facebook extends CordovaPlugin {
 
 
     @Override
-    public void initialize(){
-        
+    public void initialize(CordovaInterface cordova, CordovaWebView webView){
+        super.initialize(cordova, webView);
         FacebookSdk.sdkInitialize(cordova.getActivity().getApplicationContext());
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         enableHybridAppEvents();
