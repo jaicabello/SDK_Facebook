@@ -3,7 +3,7 @@
         <name>SDK_Facebook</name>
         <preference name="APP_ID" />
         <preference name="APP_NAME" />
-        <preference default="false" name="FACEBOOK_HYBRID_APP_EVENTS" />
+        <preference default="true" name="FACEBOOK_HYBRID_APP_EVENTS" />
         <engines>
             <engine name="cordova-android" version="&gt;=3.5.0" />
             <engine name="cordova-ios" version="&gt;=3.5.0" />
