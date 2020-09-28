@@ -485,7 +485,7 @@ public class SDK_Facebook extends CordovaPlugin {
         String cntData = args.getString(0);
         String cntId = args.getString(1);
         String cntType   = args.getString(2);
-        Integer cntNumItms = args.getInt(3;
+        Integer cntNumItms = args.getInt(3);
         Boolean cntPayInfo = Boolean.valueOf( args.getString(4) );
         String cntCurr = args.getString(5);
         Double cntAmnt = args.getDouble(6);
