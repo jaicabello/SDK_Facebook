@@ -581,7 +581,7 @@ public class SDK_Facebook extends CordovaPlugin {
 
                             pr = new PluginResult(PluginResult.Status.OK, "");
                         } else {                    
-                            Log.i("URL deeplink Diferido: "+(appLinkData.getTargetUri()).toString());
+                            //Log.i("URL deeplink Diferido: "+(appLinkData.getTargetUri()).toString());
                             pr = new PluginResult(PluginResult.Status.OK, appLinkData.getTargetUri().toString());
                         }
                         pr.setKeepCallback(true);
