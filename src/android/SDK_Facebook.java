@@ -99,14 +99,24 @@ public class SDK_Facebook extends CordovaPlugin {
         logger = AppEventsLogger.newLogger(cordova.getActivity().getApplicationContext());
         enableHybridAppEvents();
 
-        // your init code here
-
         FacebookSdk.setAutoInitEnabled(true);
         FacebookSdk.fullyInitialize();
         FacebookSdk.setIsDebugEnabled(true);
         FacebookSdk.addLoggingBehavior(LoggingBehavior.APP_EVENTS);
         FacebookSdk.setAutoLogAppEventsEnabled(true);
         FacebookSdk.setAdvertiserIDCollectionEnabled(true);
+    }
+    
+    @Override
+    public void onResume(boolean multitasking) {
+        super.onResume(multitasking);
+        AppEventsLogger.activateApp(cordova.getActivity().getApplication());
+    }
+
+    @Override
+    public void onPause(boolean multitasking) {
+        super.onPause(multitasking);
+        AppEventsLogger.deactivateApp(cordova.getActivity().getApplication());
     }
 
 
