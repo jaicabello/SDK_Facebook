@@ -43,14 +43,12 @@ var SDK_Facebook = {
 	  console.log('----------------Llamando a la funcion logOnButtonClickEvent logEventProductCustomize');
 	  exec(s, f, 'SDK_Facebook', 'logEventProductCustomize', [contentParam, contentValue])
 	}
-	,logEventInitiateCheckout : function (contentData, contentId, contentType, numItems, paymentInfoAvailable, currency, contentPrice, s, f)
+	,logEventInitiateCheckout : function (contentType, contentData, contentId, contentCurrency, contentPrice, numItems, PaymentInfo, s, f)
 	{
-	  console.log('----------------Llamando a la funcion logOnButtonClickEvent logEventInitiateCheckout');
-	  exec(s, f, 'SDK_Facebook', 'logEventInitiateCheckout', [contentData, contentId, contentType, numItems, paymentInfoAvailable, currency, contentPrice])
+	  exec(s, f, 'SDK_Facebook', 'logEventInitiateCheckout', [contentType, contentData, contentId, contentCurrency, contentPrice, numItems, PaymentInfo])
 	}
 	,logEventProductPurchase : function (contentType, contentData, contentId, contentCurrency, contentPrice, s, f)
 	{
-	  console.log('----------------Llamando a la funcion logOnButtonClickEvent logEventProductPurchase');
 	  exec(s, f, 'SDK_Facebook', 'logEventProductPurchase', [contentType, contentData, contentId, contentCurrency, contentPrice])
 	}
 };
