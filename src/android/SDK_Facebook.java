@@ -163,7 +163,7 @@ public class SDK_Facebook extends CordovaPlugin {
                 Log.d(TAG,"name event: "+args.getString(0));
                 Log.d(TAG,"parameters: "+args.getJSONObject(1));
                 try{
-                    logEventForFacebook(args.getString(0), args.getJSONObject(1),callbackContext);
+                    logEventForFacebook(args.getString(0), args.getJSONObject(1));
                 }catch (JSONException e){
                     //e.printStackTrace();
                     Log.w(TAG, "error JSON", e);
