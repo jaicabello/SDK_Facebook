@@ -134,7 +134,6 @@ public class SDK_Facebook extends CordovaPlugin {
                     Log.i(TAG,"Fin del llamado al action logViewContentEvent");
                     return true;
                 } catch (Exception e) {
-                    //TODO: handle exception
                     Log.e(TAG,"ERROR al llamar el action Event");
                     callbackContext.error("Error ejecutando action: " + e);
                     return false;
@@ -154,7 +153,6 @@ public class SDK_Facebook extends CordovaPlugin {
                     return true;
                     }
                 catch (Exception e) {
-                    //TODO: handle exception
                     Log.e(TAG,"ERROR al llamar el action logAdClickEvent");
                     callbackContext.error("Error ejecutando action: " + e);
                     return false;
@@ -479,29 +477,31 @@ public class SDK_Facebook extends CordovaPlugin {
         callbackContext.success();
     }
 
-       private void executeEventInitiateCheckout(JSONArray args, CallbackContext callbackContext) throws JSONException{
-        if (args.length() == 0){
+    private void executeEventInitiateCheckout(JSONArray args, CallbackContext callbackContext) throws JSONException
+    {
+        if (args.length() == 0)
+        {
             // Not enough parameters
             callbackContext.error("Invalid arguments");
             return;
         }
 
-        String cntData = args.getString(0);
-        String cntId = args.getString(1);
-        String cntType   = args.getString(2);
-        Integer cntNumItms = args.getInt(3);
-        Boolean cntPayInfo = Boolean.valueOf( args.getString(4) );
-        String cntCurr = args.getString(5);
-        Double cntAmnt = args.getDouble(6);
+        String cntType = args.getString(0);
+        String cntData = args.getString(1);
+        String cntId   = args.getString(2);
+        String cntCurr = args.getString(3);
+        Double cntAmnt = args.getDouble(4);
+        Integer cntNumItms = args.getInt(5);
+        Boolean cntPayInfo = Boolean.valueOf( args.getString(6) );
 
         Bundle params = new Bundle();
-
+        params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, cntType);
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT, cntData);
         params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_ID, cntId);
-        params.putString(AppEventsConstants.EVENT_PARAM_CONTENT_TYPE, cntType);
+        params.putString(AppEventsConstants.EVENT_PARAM_CURRENCY, cntCurr);
+
         params.putInt   (AppEventsConstants.EVENT_PARAM_NUM_ITEMS , cntNumItms);
         params.putInt   (AppEventsConstants.EVENT_PARAM_PAYMENT_INFO_AVAILABLE , cntPayInfo ? 1 : 0 );
-        params.putString(AppEventsConstants.EVENT_PARAM_CURRENCY, cntCurr);
 
         logger.logEvent(AppEventsConstants.EVENT_NAME_INITIATED_CHECKOUT, cntAmnt, params);
 
@@ -545,30 +545,23 @@ public class SDK_Facebook extends CordovaPlugin {
      * This function assumes logger is an instance of AppEventsLogger and has been
      * created using AppEventsLogger.newLogger() call.
     */
-      private void logEventForFacebook (String eventName, JSONObject parameters,CallbackContext callbackContext)throws JSONException{
-        
-        final Bundle params = new Bundle();
+    public void logEventForFacebook (String eventName, JSONObject parameters) throws JSONException{
+
+        Bundle params = new Bundle();
         Log.i(TAG,"PARAMS eventName: "+eventName);
-        Iterator iter = parameters.keys();
-        
+        Iterator<String> iter = parameters.keys();
         while (iter.hasNext()) {
             String key = (String) iter.next();
-            Object value = parameters.get(key);
-            Log.i(TAG,"parameters key: "+key);
-            Log.i(TAG,"parameters value: "+value);
-            params.putString(key, value.toString()); 
+            try{
+                String value = parameters.getString(key);
+                Log.i(TAG,"parameters key: "+key);
+                Log.i(TAG,"parameters value: "+value);
+                params.putString(key, value);    
+            }catch (JSONException e) {
+                Log.w(TAG, "El parametro no es string para la key" + key);
+            }
         }
-        try {
-          logger.logEvent(eventName, params);
-          callbackContext.success();
-          Log.d(TAG, "logEvent success");
-        } catch (Exception e) {
-           callbackContext.error(e.getMessage());
-           Log.w(TAG, "Error al llamar al action logEventForFacebook"); 
-           
-        }
-
-        
+        logger.logEvent(eventName, params);
     }
     // DEEP LINKS DIFERIDOS  
     private void executeGetDeferredApplink(JSONArray args,
