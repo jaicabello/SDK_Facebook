@@ -22,34 +22,34 @@ var SDK_Facebook = {
 	logOnButtonClickEvent : function (arg0, success, error) {
     	console.log('----------------Llamando a la funcion logOnButtonClickEvent Facebook_SDK');	  
     	exec(success, error, 'SDK_Facebook', 'logOnButtonClickEvent', [arg0]);
-    }
-	,logViewContent : function (contentType, contentData, contentId, contentCurrency, contentPrice, s, f)
+	},
+	logViewContent : function (contentType, contentData, contentId, contentCurrency, contentPrice, s, f)
 	{
 	  console.log('----------------Llamando a la funcion logOnButtonClickEvent logViewContent');	
-	  exec(s, f, 'SDK_Facebook', 'logViewContent', [contentType, contentData, contentId, contentCurrency, contentPrice])
-	}
-	,logEventSearch : function (contentType, contentData, contentId, searchQuery, searchSuccess, s, f)
+	  exec(s, f, 'SDK_Facebook', 'logViewContent', [contentType, contentData, contentId, contentCurrency, contentPrice]);
+	},
+	logEventSearch : function (contentType, contentData, contentId, searchQuery, searchSuccess, s, f)
 	{
 	  console.log('----------------Llamando a la funcion logOnButtonClickEvent logEventSearch');
-	  exec(s, f, 'SDK_Facebook', 'logEventSearch', [contentType, contentData, contentId, searchQuery, searchSuccess])
-	}
-	,logEventProductCartAdd : function (contentType, contentData, contentId, contentCurrency, contentPrice, s, f)
+	  exec(s, f, 'SDK_Facebook', 'logEventSearch', [contentType, contentData, contentId, searchQuery, searchSuccess]);
+	},
+	logEventProductCartAdd : function (contentType, contentData, contentId, contentCurrency, contentPrice, s, f)
 	{
 	  console.log('----------------Llamando a la funcion logOnButtonClickEvent logEventProductCartAdd');
-	  exec(s, f, 'SDK_Facebook', 'logEventProductCartAdd', [contentType, contentData, contentId, contentCurrency, contentPrice])
-	}
-	,logEventProductCustomize : function (contentParam, contentValue, s, f)
+	  exec(s, f, 'SDK_Facebook', 'logEventProductCartAdd', [contentType, contentData, contentId, contentCurrency, contentPrice]);
+	},
+	logEventProductCustomize : function (contentParam, contentValue, s, f)
 	{
 	  console.log('----------------Llamando a la funcion logOnButtonClickEvent logEventProductCustomize');
-	  exec(s, f, 'SDK_Facebook', 'logEventProductCustomize', [contentParam, contentValue])
-	}
-	,logEventInitiateCheckout : function (contentType, contentData, contentId, contentCurrency, contentPrice, numItems, PaymentInfo, s, f)
+	  exec(s, f, 'SDK_Facebook', 'logEventProductCustomize', [contentParam, contentValue]);
+	},
+	logEventInitiateCheckout : function (contentType, contentData, contentId, contentCurrency, contentPrice, numItems, PaymentInfo, s, f)
 	{
-	  exec(s, f, 'SDK_Facebook', 'logEventInitiateCheckout', [contentType, contentData, contentId, contentCurrency, contentPrice, numItems, PaymentInfo])
-	}
-	,logEventProductPurchase : function (contentType, contentData, contentId, contentCurrency, contentPrice, s, f)
+	  exec(s, f, 'SDK_Facebook', 'logEventInitiateCheckout', [contentType, contentData, contentId, contentCurrency, contentPrice, numItems, PaymentInfo]);
+	},
+	logEventProductPurchase : function (contentType, contentData, contentId, contentCurrency, contentPrice, s, f)
 	{
-	  exec(s, f, 'SDK_Facebook', 'logEventProductPurchase', [contentType, contentData, contentId, contentCurrency, contentPrice])
+	  exec(s, f, 'SDK_Facebook', 'logEventProductPurchase', [contentType, contentData, contentId, contentCurrency, contentPrice]);
 	}
 };
 
